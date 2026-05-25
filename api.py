@@ -6,22 +6,29 @@ td = TDClient(apikey=API_KEY)
 
 def get_market_data():
 
-    nifty = td.price(
-        symbol = "NIFTY",
-        exchange = "NSE"
-    ).as_json()
-
-    usd_inr = td.price(
-        symbol = "USD/INR"
-    ).as_json()
-
-    gold = td.price(
-        symbol = "XAU/USD"
-    ).as_json()
-
-
-    return {
-        "NIFTY": round(float(nifty["price"]), 2),
-        "USD/INR": round(float(usd_inr["price"]), 2),
-        "GOLD": round(float(gold["price"]), 2)
+    assets = {
+        "APPLE": "AAPL",
+        "BITCOIN": "BTC/USD",
+        "USD_INR": "USD/INR",
+        "GOLD": "XAU/USD"
     }
+
+    data = {}
+
+    for name, symbol in assets.items():
+
+        try:
+            result = td.quote(symbol=symbol).as_json()
+
+            print(result)  # Debugging
+
+            if "close" in result:
+                data[name] = round(float(result["close"]), 2)
+            else:
+                data[name] = "Unavailable"
+
+        except Exception as e:
+            print(f"{name} ERROR:", e)
+            data[name] = "Error"
+
+    return data

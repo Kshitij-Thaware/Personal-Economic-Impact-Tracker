@@ -16,9 +16,9 @@ st.subheader("Live Economic Stats")
 
 col1, col2, col3 = st.columns(3)
 
-col1.metric("NIFTY", data["NIFTY"])
-col2.metric("USD/INR", data["USD_INR"])
-col3.metric("Gold", data["GOLD"])
+col1.metric("USD/INR", data["USD_INR"])
+col2.metric("Gold", data["GOLD"])
+col3.metric("Apple", data["APPLE"])
 
 st.divider()
 

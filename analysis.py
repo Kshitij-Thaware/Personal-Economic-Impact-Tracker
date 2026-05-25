@@ -7,7 +7,7 @@ def calculate_financial_health(
         fuel,
         groceries
 ):
-    total_expense = rent + eni + fuel + groceries
+    total_expense = rent + emi + fuel + groceries
 
     savings = salary - total_expense
 
